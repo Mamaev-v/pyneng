@@ -16,3 +16,9 @@
 """
 
 mac = "AAAA:BBBB:CCCC"
+mac_split = mac.split(":")
+A = bin(int(mac_split[0], 16))
+B = bin(int(mac_split[1], 16))
+C = bin(int(mac_split[2], 16))
+result = A + B + C
+print(result)
