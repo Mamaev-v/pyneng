@@ -49,3 +49,40 @@ bin_ip = "00001010000000010000000111000011"
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
 """
+
+
+subnet = input('Input subnet address: ')
+subnet_list = subnet.replace('/', '.').split('.')
+oct1 = int(subnet_list[0])
+oct2 = int(subnet_list[1])
+oct3 = int(subnet_list[2])
+oct4 = int(subnet_list[3])
+mask = int(subnet_list[4])
+
+ip_bin_str = "{:08b}{:08b}{:08b}{:08b}".format(oct1, oct2, oct3, oct4)
+bin_netw_str = ip_bin_str[:mask] + '0' * (32 - mask)
+oct1_str = int(bin_netw_str[0:8], 2)
+oct2_str = int(bin_netw_str[8:16], 2)
+oct3_str = int(bin_netw_str[16:24], 2)
+oct4_str = int(bin_netw_str[24:32], 2)
+
+mask_bin_str = "1" * mask + "0" * (32 - mask)
+mask_int_oct1 = int(mask_bin_str[0:8], 2)
+mask_int_oct2 = int(mask_bin_str[8:16], 2)
+mask_int_oct3 = int(mask_bin_str[16:24], 2)
+mask_int_oct4 = int(mask_bin_str[24:32], 2)
+
+template_network = '''
+Network:
+{0:<8} {1:<8} {2:<8} {3:<8}
+{0:08b} {1:08b} {2:08b} {3:08b}'''
+
+template_mask = '''
+Mask:
+/{0}
+{1:<8} {2:<8} {3:<8} {4:<8}
+{1:08b} {2:08b} {3:08b} {4:08b}
+'''
+
+print(template_network.format(oct1_str, oct2_str, oct3_str, oct4_str))
+print(template_mask.format(mask, mask_int_oct1, mask_int_oct2, mask_int_oct3, mask_int_oct4))
