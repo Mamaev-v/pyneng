@@ -26,7 +26,8 @@ while True:
         check = False
     if check == True: # or "if check"
         break
-    print("IP введен не верно")
+    else:
+        print("IP введен не верно")
 
 print("IP  введен верно")
 
