@@ -40,3 +40,17 @@
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
 """
+dest = []
+
+with open('CAM_table.txt', 'r') as file:
+    for line in file:
+        words = line.split()
+        if len(words) > 3 and words[0].isdigit():
+            words[0] = int(words[0])
+            dest.append(words)
+            
+    for mac_line in sorted(dest):
+        vlan, mac, port = mac_line[0], mac_line[1], mac_line[3]
+        print(f"{vlan:<7}{mac:17}{port}") 
+ 
+  

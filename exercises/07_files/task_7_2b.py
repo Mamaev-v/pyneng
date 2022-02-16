@@ -17,3 +17,13 @@
 """
 
 ignore = ["duplex", "alias", "configuration"]
+
+file_src = 'config_sw1.txt'
+file_dst = 'task_7_2b_dst.txt'
+
+with open(file_src) as file_src, open(file_dst, 'w') as file_dst:
+    for line in file_src:
+        words = line.split()
+        words_intersect = set(words) & set(ignore)
+        if not line.startswith('!') and not words_intersect:
+            file_dst.write(line)
