@@ -14,3 +14,19 @@ Outbound Interface    FastEthernet0/0
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
 """
+
+from opcode import opname
+
+output = "\n{:20} {}" * 5
+
+with open('/home/vladimir/Repos/pyneng/exercises/07_files/ospf.txt', 'r') as file:
+    for line in file:
+        line = line.replace(",", "").replace("[", "").replace("]", "").split()
+        print(output.format(
+        "Prefix", line[1],
+        "AD/Mtric", line[2],
+        "Next-Hop", line[4],
+        "Last Update", line[5],
+        "Outbound Interface", line[-1]     
+        ))
+
