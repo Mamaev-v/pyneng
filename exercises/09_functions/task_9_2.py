@@ -43,6 +43,9 @@
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 """
 
+from os import replace
+
+
 trunk_mode_template = [
     "switchport mode trunk",
     "switchport trunk native vlan 999",
@@ -60,3 +63,18 @@ trunk_config_2 = {
     "FastEthernet0/15": [111, 130],
     "FastEthernet0/14": [117],
 }
+
+def gen_trunk_ports(intf_vlan_mapping, trunk_template):
+  config = []
+  for int, vlans in intf_vlan_mapping.items():
+    config.append(f'interface {int}')
+    vlans = str(vlans).replace("[", "").replace("]", "")
+    for command in trunk_template:
+      if command.endswith('allowed vlan'):
+        config.append(f'{command} {vlans}')
+      else:
+        config.append(command)
+  return(config)
+
+print(gen_trunk_ports(trunk_config, trunk_mode_template))
+
