@@ -15,11 +15,9 @@ Outbound Interface    FastEthernet0/0
 
 """
 
-from opcode import opname
-
 output = "\n{:20} {}" * 5
 
-with open('/home/vladimir/Repos/pyneng/exercises/07_files/ospf.txt', 'r') as file:
+with open('/Users/vladimir/Documents/repo_git/pyneng/exercises/07_files/ospf.txt', 'r') as file:
     for line in file:
         line = line.replace(",", "").replace("[", "").replace("]", "").split()
         print(output.format(
