@@ -24,6 +24,16 @@
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 """
 
-def get_int_vlan_map(confog_sw):
+file_src = 'config_sw1.txt'
+
+def get_int_vlan_map(config_sw):
     vlan_map = tuple()
+    access_dict = {}
+    trunk_dict = {}
+    for line in config_sw:
+        if 'interface' in line:
+            interface = line.split()[-1]
+    print(interface)
     
+
+#print(get_int_vlan_map(file_src))
