@@ -26,4 +26,5 @@ with open('CAM_table.txt', 'r') as file:
         words = line.split()
         if len(words) > 3 and words[0].isdigit():
                 vlan, mac, port = words[0], words[1], words[3]
+
                 print(f"{vlan:7}{mac:17}{port}")

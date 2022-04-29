@@ -43,9 +43,6 @@
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 """
 
-from os import replace
-
-
 trunk_mode_template = [
     "switchport mode trunk",
     "switchport trunk native vlan 999",

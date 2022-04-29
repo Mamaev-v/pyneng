@@ -39,11 +39,11 @@ interface Ethernet0/3
 ...
 
 """
-from sys import argv
+#from sys import argv
 
-filename = argv[1]
+#filename = argv[1]
 
-with open(filename) as file:
+with open('/Users/vladimir/Documents/repo_git/pyneng/exercises/07_files/config_sw1.txt', 'r') as file:
     for line in file:
         if not line.startswith('!'):
             print(line.rstrip())
