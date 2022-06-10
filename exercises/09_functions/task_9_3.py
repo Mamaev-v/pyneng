@@ -24,16 +24,22 @@
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 """
 
-file_src = 'config_sw1.txt'
-
-def get_int_vlan_map(config_sw):
-    vlan_map = tuple()
+def get_int_vlan_map(config_filename):
     access_dict = {}
     trunk_dict = {}
-    for line in config_sw:
-        if 'interface' in line:
-            interface = line.split()[-1]
-    print(interface)
-    
+    with open(config_filename, 'r') as file:
+        for line in file:
+            line = line.rstrip()
+            if 'FastEthernet' in line:
+                interface = line.split()[-1]
+            elif 'access vlan' in line:
+                access = line.split()[-1]
+                access_dict[interface] = access
+            elif 'trunk allowed' in line:
+                trunk = line.split()[-1]
+                trunk_dict[interface] = trunk
+    return access_dict, trunk_dict
 
-#print(get_int_vlan_map(file_src))
+result = get_int_vlan_map('/Users/vladimir/Documents/repo_git/pyneng/exercises/09_functions/config_sw1.txt')
+print(result)
+

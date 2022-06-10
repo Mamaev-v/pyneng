@@ -64,3 +64,21 @@ def ignore_command(command, ignore):
         if word in command:
             ignore_status = True
     return ignore_status
+
+def convert_config_to_dict(config_filename):
+    conf_as_dict = {}
+    with open(config_filename, 'r') as file:
+        for line in file:
+            line = line.rstrip()
+            if not line.startswith('!') and not ignore_command(line, ignore):
+                if not line.startswith(' '):
+                    config = []
+                    line_global = line
+                    conf_as_dict[line_global] = []
+                else:
+                    #config.append(line)
+                    conf_as_dict[line_global].append(line.strip())
+    return conf_as_dict
+
+conf = convert_config_to_dict('/Users/vladimir/Documents/repo_git/pyneng/exercises/09_functions/config_sw1.txt')
+print(conf)
