@@ -34,3 +34,28 @@
  '172.21.41.129', '172.21.41.130', '172.21.41.131', '172.21.41.132']
 
 """
+from dataclasses import replace
+import ipaddress
+from posixpath import split
+
+def convert_ranges_to_ip_list(list):
+    ip_list = []
+    for ip in list:
+        if "-" in ip:
+            range_ip = ip.split("-")
+            temp_ip = range_ip[0].split(".")
+            temp_ip_2 = temp_ip[0] + "." + temp_ip[1] + "." + temp_ip[2] + "."
+            range_start = int(range_ip[0].split(".")[3])
+            if "." in range_ip[1]:
+                range_stop = int(range_ip[1].split(".")[3])
+            else:
+                range_stop = int(range_ip[1])
+            for i in range(range_start, range_stop+1):
+                host = temp_ip_2 + str(i)
+                ip_list.append(host)
+        else:
+            ip_list.append(ip)
+    return ip_list
+
+if __name__ == "__main__":
+    print(convert_ranges_to_ip_list(['8.8.4.4', '1.1.1.1-3', '172.21.41.128-172.21.41.132']))

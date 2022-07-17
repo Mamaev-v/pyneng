@@ -14,3 +14,19 @@
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 """
+
+import subprocess
+
+def ping_ip_addresses(ip_address):
+    reacheble = []
+    unreacheble = []
+    for ip in ip_address:
+        ping = subprocess.run(['ping', '-c', '1', ip], stderr=subprocess.PIPE, stdout=subprocess.DEVNULL)
+        if ping.returncode == 0:
+            reacheble.append(ip)
+        else:
+            unreacheble.append(ip)
+    return reacheble, unreacheble
+
+if __name__ == "__main__":
+    print(ping_ip_addresses(['8.8.8.8', '1.1.1.1', '32.4.2345.5']))

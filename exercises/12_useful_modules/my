@@ -1,0 +1,15 @@
+# -*- coding: utf-8 -*-
+
+
+from task_12_1 import ping_ip_addresses
+from task_12_2 import convert_ranges_to_ip_list
+from task_12_3 import print_ip_table
+
+
+list_dest = ['8.8.4.4', '1.1.1.1-3', '10.10.10.260']
+unpack_ip = convert_ranges_to_ip_list(list_dest)
+#print(unpack_ip)
+reach, unreach = ping_ip_addresses(unpack_ip)
+#print(reach, unreach)
+print("\n")
+print(print_ip_table(reach, unreach))
