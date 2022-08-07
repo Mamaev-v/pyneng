@@ -15,7 +15,7 @@
 
 Для получения такого результата, используйте регулярные выражения.
 
-Проверить работу функции на примере файла config_r1.txt.
+Проверить работу функции на примеßре файла config_r1.txt.
 
 
 Обратите внимание, что в данном случае, можно не проверять корректность IP-адреса,
@@ -23,3 +23,24 @@
 а не ввод пользователя.
 
 """
+
+import re
+
+def get_ip_from_cfg(config):
+    output = list()
+    regex = re.compile(r'ip address (?P<ip>[0-9.]+) '  #поиск IP
+                       r'(?P<mask>[0-5.]+)')           #поиск маски
+    with open(config) as file:
+        for line in file:
+            match = regex.search(line)
+            if match:
+                ip, mask = match.groups()
+                address = (ip, mask)
+                output.append(address)
+    return(output)
+
+
+
+
+if __name__ == "__main__":
+    print(get_ip_from_cfg("config_r1.txt"))
