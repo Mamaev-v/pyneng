@@ -36,3 +36,45 @@
 в файл topology.yaml. Он понадобится в следующем задании.
 
 """
+
+from __future__ import with_statement
+import re
+import glob
+import yaml
+from task_17_3 import parse_sh_cdp_neighbors_2
+
+#def generate_topology_from_cdp(config):
+#        regex = re.compile(r"(?P<eq_d>\S+) +(?P<port_loc>\S+ \d+\S\d+).+ +(?P<port_dest>\S+ \d+\S\d+)")
+#        final = {}
+#        main_eq = re.search(r"(\S+)[>#]", config).group(1)
+#        final[main_eq] = {}
+#        match = regex.finditer(config)
+#        for line in match:
+#                eq_d, port_loc, port_dest = line.group("eq_d", "port_loc", "port_dest")
+#                final[main_eq][port_loc] = {eq_d:port_dest}
+#        return final
+#
+#
+#if __name__ == "__main__":
+#        files = glob.glob("sh_cdp_n*")
+#        for file in files:
+#                with open(file) as src:
+#                        print(generate_topology_from_cdp(src.read()))
+
+
+def generate_topology_from_cdp(list_of_files, save_to_filename = None):
+        result_dict = {}
+        for file in list_of_files:
+                with open(file) as src:
+                        result_dict.update(parse_sh_cdp_neighbors_2(src.read()))
+        if save_to_filename:
+                with open(save_to_filename, 'w') as dst:
+                        yaml.dump(result_dict, dst)
+                
+        return result_dict
+
+
+
+if __name__ == "__main__":
+        files = glob.glob("sh_cdp_n*")
+        print(generate_topology_from_cdp(files, "3a_output_yaml.yaml"))

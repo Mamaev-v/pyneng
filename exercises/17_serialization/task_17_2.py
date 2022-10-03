@@ -44,8 +44,54 @@
 """
 
 import glob
+import csv
+import re
 
 sh_version_files = glob.glob("sh_vers*")
-# print(sh_version_files)
+#print(sh_version_files)
 
 headers = ["hostname", "ios", "image", "uptime"]
+
+def parse_sh_version(config):
+  result = []
+  ios_reg = re.compile(r"Cisco IOS.+ Version (\S+),")
+  uptime_reg = re.compile(r".+uptime is (\d+ \S+, \d+ \S+, \d+ \S+)")
+  image_reg = re.compile(r".+ file is \"(flash:.+|disk0:.+)\"")
+  for line in config.split("\n"):
+    if "Cisco IOS" in line:
+      ios = ios_reg.findall(line)
+    if "uptime is" in line:
+      uptime = uptime_reg.findall(line)
+    if "file is" in line:
+      image = image_reg.findall(line)
+  result.append(ios[0])
+  result.append(image[0])
+  result.append(uptime[0])
+  result = tuple(result)
+  return result
+
+def write_inventory_to_csv(data_filenames, csv_filename):
+  final = list()
+  name_reg = re.compile(r"_(r\d)\.")
+  final.append(headers)
+  for filename in data_filenames:
+    with open(filename) as src:
+      name = name_reg.findall(filename)
+      line = parse_sh_version(src.read())
+      full_line = name + list(line)
+      final.append(full_line)
+  with open(csv_filename, 'w') as dest:
+    writer = csv.writer(dest)
+    writer.writerows(final)
+
+
+if __name__ == "__main__":
+  write_inventory_to_csv(sh_version_files,"temp.csv")
+   
+
+
+
+
+
+
+
