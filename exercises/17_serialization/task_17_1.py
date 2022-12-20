@@ -35,7 +35,7 @@ import re
 import csv
 
 def write_dhcp_snooping_to_csv(filenames, output):
-    regex = re.compile(r'(\S+) +(\S+) +\d+ +\S+ +\d+ +(\S+)')
+    regex = re.compile(r'(\S+) +(\S+) +\d+ +\S+ +(\d+) +(\S+)')
     headers = ['switch','mac','ip','vlan','interface']
     final = list()
     final.append(headers)
