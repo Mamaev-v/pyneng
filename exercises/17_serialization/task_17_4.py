@@ -83,7 +83,7 @@ def write_last_log_to_csv(source_log, output = None):
                 final.append(req_line)
             else:
                 final.append(group_line[0])
-            group_line = []
+            group_line = list()
             src.seek(24)
     with open(output, 'w') as dest:
         writer = csv.writer(dest)
@@ -93,4 +93,4 @@ def write_last_log_to_csv(source_log, output = None):
 
 
 if __name__ == "__main__":
-    write_last_log_to_csv("mail_log.csv","17.4_output.csv")
+    write_last_log_to_csv("mail_log.csv","task_17_4_out.csv")

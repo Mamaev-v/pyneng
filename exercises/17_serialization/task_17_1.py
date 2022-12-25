@@ -54,4 +54,4 @@ filenames = ['sw1_dhcp_snooping.txt',
             'sw3_dhcp_snooping.txt']
 
 if __name__ == "__main__":
-    write_dhcp_snooping_to_csv(filenames, 'output.csv')
+    write_dhcp_snooping_to_csv(filenames, 'task_17_1_out.csv')
