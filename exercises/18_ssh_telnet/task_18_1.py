@@ -17,8 +17,15 @@
 с помощью функции send_show_command (эта часть кода написана).
 
 """
-import yaml
 
+import yaml
+from netmiko import ConnectHandler
+
+def send_show_command(devs, cmd):
+    with ConnectHandler(**dev) as ssh:
+        ssh.enable()
+        output = ssh.send_command(cmd)
+    return output
 
 if __name__ == "__main__":
     command = "sh ip int br"

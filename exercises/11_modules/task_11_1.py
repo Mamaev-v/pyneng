@@ -34,8 +34,6 @@ R6           Fa 0/2          143           R S I           2811       Fa 0/0
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 """
 
-
-from posixpath import split
 from pprint import pprint
 
 def parse_cdp_neighbors(command_output):

@@ -27,7 +27,7 @@ if len(ip) != 4:
    check = False
 else:
    for oct in ip:
-      if not (oct.isdigit and 0 <= int(oct) <= 255):
+      if not (oct.isdigit() and 0 <= int(oct) <= 255):
          check = False
          break
 

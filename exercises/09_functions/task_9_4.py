@@ -44,6 +44,7 @@
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 """
+from pprint import pprint
 
 ignore = ["duplex", "alias", "configuration"]
 
@@ -78,4 +79,4 @@ def convert_config_to_dict(config_filename):
     return conf_as_dict
 
 conf = convert_config_to_dict('/Users/vladimir/Documents/repo_git/pyneng/exercises/09_functions/config_sw1.txt')
-print(conf)
+pprint(conf)

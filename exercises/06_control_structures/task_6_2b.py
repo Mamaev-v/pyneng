@@ -19,7 +19,7 @@ while True:
     check = True
     if len(ip) == 4:
         for oct in ip:
-            if not (oct.isdigit and 0 <= int(oct) <= 255):
+            if not (oct.isdigit() and 0 <= int(oct) <= 255):
                 check = False
                 break
     else:

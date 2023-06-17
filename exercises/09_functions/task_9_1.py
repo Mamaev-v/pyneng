@@ -78,17 +78,12 @@ def generate_access_config(intf_vlan_mapping, access_template):
     config = []
     for int, vlan in intf_vlan_mapping.items():
         config.append(f"interface {int}")
-        #print(f"interface {int}")
         for line in access_mode_template:
             if line.endswith('vlan'):
                 config.append(f"{line} {vlan}")
-                #print(f"{line} {vlan}")
             else:
                 config.append(line)
-                #print(line)
     return config
 
 conf = generate_access_config(access_config, access_mode_template)
 print(conf)
-
-#generate_access_config(access_config, access_mode_temp)

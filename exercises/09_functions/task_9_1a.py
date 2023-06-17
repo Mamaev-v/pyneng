@@ -28,6 +28,8 @@ print(generate_access_config(access_config, access_mode_template, port_security_
 
 """
 
+from pprint import pprint
+
 access_mode_template = [
     "switchport mode access",
     "switchport access vlan",
@@ -59,4 +61,4 @@ def generate_access_config(intf_vlan_mapping, access_template, psecurity = None)
     return config
 
 conf = generate_access_config(access_config, access_mode_template, port_security_template)
-print(conf)
+pprint(conf)
