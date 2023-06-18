@@ -40,6 +40,7 @@
 #from __future__ import with_statement
 import glob
 import yaml
+from pprint import pprint
 from task_17_3 import parse_sh_cdp_neighbors_2
 
 def generate_topology_from_cdp(list_of_files, save_to_filename = None):
@@ -57,4 +58,4 @@ def generate_topology_from_cdp(list_of_files, save_to_filename = None):
 
 if __name__ == "__main__":
         files = glob.glob("sh_cdp_n*")
-        print(generate_topology_from_cdp(files, "task_17_3a_out.yaml"))
+        pprint(generate_topology_from_cdp(files, "task_17_3a_out.yaml"))

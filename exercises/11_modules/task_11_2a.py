@@ -74,7 +74,6 @@
 
 """
 from pprint import pprint
-from draw_network_graph import draw_topology
 from task_11_2 import create_network_map
 
 infiles = [
